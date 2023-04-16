@@ -38,14 +38,15 @@ namespace Assets.Scripts.Managers
             var ballMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             ballMousePos.z = 0;
             
-            var ballColor = (Ball.BallColorType) UnityEngine.Random.Range(0, Enum.GetNames(typeof(Ball.BallColorType)).Length);
             var ball = InstantiateBall(ballMousePos);
+            
+            var ballColor = (Ball.BallColorType) UnityEngine.Random.Range(0, Enum.GetNames(typeof(Ball.BallColorType)).Length);
             ball.InitBall(ballName, ballColor);
             
             OnBallSpawn?.Invoke();
         }
 
-        private Ball InstantiateBall(Vector3 position)
+        public Ball InstantiateBall(Vector3 position)
         {
             var ball = BallPool.Instance.Pool.Get();
             ball.transform.position = position;
