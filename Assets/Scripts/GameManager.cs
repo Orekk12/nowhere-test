@@ -1,3 +1,4 @@
+using System;
 using Assets.Scripts.Common;
 using UnityEngine;
 
@@ -7,7 +8,23 @@ namespace Assets.Scripts.Managers
     {
         [SerializeField] private AudioSource _spawnSound;
 
-        public void PlaySpawnSound()
+        protected override void Awake()
+        {
+            base.Awake();
+            _spawnSound = GetComponent<AudioSource>();
+        }
+
+        private void Start()
+        {
+            SpawnManager.OnBallSpawn += PlaySpawnSound;
+        }
+
+        private void OnDestroy()
+        {
+            SpawnManager.OnBallSpawn -= PlaySpawnSound;
+        }
+
+        private void PlaySpawnSound()
         {
             _spawnSound.Play();
         }

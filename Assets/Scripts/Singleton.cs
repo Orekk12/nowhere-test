@@ -10,7 +10,7 @@ namespace Assets.Scripts.Common
 
         public static T Instance => _instance;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             if (_instance != null && _instance != this)
             {

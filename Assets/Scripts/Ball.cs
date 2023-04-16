@@ -12,30 +12,37 @@ namespace Assets.Scripts
             Blue
         }
         
-        public Color Color { get => _spriteRenderer.color; }
         public Color ColorValue => _spriteRenderer.color;//If the user wants the specific color value they can use this property.
         public BallColorType ColorType => _colorType;
 
         [SerializeField] private Color redColor;
         [SerializeField] private Color blueColor;
         
-        protected  BallColorType _colorType;
+        protected BallColorType _colorType;
         protected SpriteRenderer _spriteRenderer;
-
-        //TODO: Implement 2 types of balls which has red and blue colors.
-        //OPTIONAL: Think outside the box.
 
         protected virtual void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
-
-        public void SetName(string ballName)
+        
+        public void InitBall(string ballName)
+        {
+            SetName(ballName);
+        }
+        
+        public void InitBall(string ballName, BallColorType ballColorType)
+        {
+            SetName(ballName);
+            SetColor(ballColorType);
+        }
+        
+        private void SetName(string ballName)
         {
             this.name = ballName;
         }
 
-        public void SetColor(BallColorType ballColor)//With an enum the user of the function doesn't have to know the specific color values.
+        private void SetColor(BallColorType ballColor)//With an enum the user of the function doesn't have to know the specific color values.
         {
             switch (ballColor)
             {
