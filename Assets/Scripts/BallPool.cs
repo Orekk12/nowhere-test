@@ -4,7 +4,7 @@ using UnityEngine.Pool;
 
 namespace Assets.Scripts
 {
-    public class BallPool : Singleton<BallPool>
+    public class BallPool : Singleton<BallPool>//An extendable component pooler would be better, but this is enough for this project.
     {
         [SerializeField] private GameObject ballPrefab;
 
