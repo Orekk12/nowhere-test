@@ -15,8 +15,8 @@ namespace Assets.Scripts
         public Color ColorValue => _spriteRenderer.color;//If the user wants the specific color value they can use this property.
         public BallColorType ColorType => _colorType;
 
-        [SerializeField] private Color redColor;
-        [SerializeField] private Color blueColor;
+        [SerializeField] private Color redColor = Color.red;
+        [SerializeField] private Color blueColor = Color.blue;
         
         protected BallColorType _colorType;
         protected SpriteRenderer _spriteRenderer;

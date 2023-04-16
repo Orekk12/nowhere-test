@@ -4,14 +4,21 @@ using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
+    [RequireComponent(typeof(AudioSource))]
     public class GameManager : Singleton<GameManager>
     {
-        [SerializeField] private AudioSource _spawnSound;
+        [SerializeField] private AudioClip spawnClip;
+        private AudioSource _audioSource;
 
         protected override void Awake()
         {
             base.Awake();
-            _spawnSound = GetComponent<AudioSource>();
+            _audioSource = GetComponent<AudioSource>();
+
+            if (spawnClip == null)
+            {
+                Debug.LogError("Spawn clip is not set!");
+            }
         }
 
         private void Start()
@@ -26,7 +33,7 @@ namespace Assets.Scripts.Managers
 
         private void PlaySpawnSound()
         {
-            _spawnSound.Play();
+            _audioSource.PlayOneShot(spawnClip);
         }
     }
 }

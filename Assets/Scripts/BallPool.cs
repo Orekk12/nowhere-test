@@ -16,15 +16,20 @@ namespace Assets.Scripts
         protected override void Awake()
         {
             base.Awake();
+            
+            if (ballPrefab == null)
+            {
+                Debug.LogError("Ball prefab is not set!");
+            }
+            
             Pool = new ObjectPool<Ball>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool,
                 OnDestroyPoolObject, true, defaultCapacity, maxPoolSize);
         }
 
         private Ball CreatePooledItem()
         {
-            var ball = Instantiate(ballPrefab.gameObject);
-
-            return ball.GetComponent<Ball>();
+            var ballGameObject = Instantiate(ballPrefab.gameObject, transform);//Balls are stored under the BallPool object for cleaner hierarchy.
+            return ballGameObject.GetComponent<Ball>();
         }
 
         private void OnTakeFromPool(Ball ballComponent) => ballComponent.gameObject.SetActive(true);

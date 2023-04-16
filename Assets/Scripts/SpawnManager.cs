@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Managers
 {
     public class SpawnManager : MonoBehaviour
     {
-        public static Action OnBallSpawn;
+        public static event Action OnBallSpawn;
         private List<Ball> _balls = new List<Ball>();
 
         private void Update()
@@ -35,7 +35,6 @@ namespace Assets.Scripts
 
         private void SpawnBallAtMouseAndGiveName(string ballName)
         {
-            //TODO: Use events for playing sounds.
             var ballMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             ballMousePos.z = 0;
             
